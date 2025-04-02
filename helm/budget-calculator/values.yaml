@@ -1,8 +1,8 @@
 replicaCount: 1
 
 image:
-  repository: localhost:5000/excel-calculator
-  tag: v1
+  repository:  docker.io/yiannistse013/budget-calculator
+  tag: latest
   pullPolicy: IfNotPresent
 
 service:
@@ -14,7 +14,7 @@ ingress:
   enabled: true
   className: "nginx"
   hosts:
-    - host: excel-calculator.local
+    - host: budget-calculator.local
       paths:
         - path: /
           pathType: Prefix
