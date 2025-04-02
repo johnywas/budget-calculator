@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: budget-calculator
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/johnywas/budget-calculator.git
+    targetRevision: HEAD
+    path: helm/budget-calculator
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: budget-calculator
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

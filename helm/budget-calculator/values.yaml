@@ -1,0 +1,28 @@
+replicaCount: 1
+
+image:
+  repository: localhost:5000/excel-calculator
+  tag: v1
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 5000
+
+ingress:
+  enabled: true
+  className: "nginx"
+  hosts:
+    - host: excel-calculator.local
+      paths:
+        - path: /
+          pathType: Prefix
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi

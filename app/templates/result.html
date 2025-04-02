@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cost Calculation Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Cost Calculation Results</h1>
+        
+        <div class="result-summary">
+            <h2>Total Monthly Costs: {{ "%.2f"|format(total_sum) }}</h2>
+        </div>
+        
+        <div class="results">
+            <h3>Breakdown by File:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>File</th>
+                        <th>Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for file in files %}
+                    <tr>
+                        <td>{{ file.name }}</td>
+                        <td>{{ "%.2f"|format(file.sum) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <a href="/" class="button">Calculate Another</a>
+    </div>
+</body>
+</html> 

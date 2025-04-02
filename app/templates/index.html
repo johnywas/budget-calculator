@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Excel Cost Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Monthly Cost Calculator</h1>
+        <p>Upload one or more Excel files with costs in the 4th column</p>
+        
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="messages">
+              {% for message in messages %}
+                <p class="error">{{ message }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+        
+        <form method="POST" enctype="multipart/form-data">
+            <div class="file-input">
+                <input type="file" name="files" multiple accept=".xls,.xlsx">
+            </div>
+            <button type="submit">Calculate</button>
+        </form>
+    </div>
+</body>
+</html>
