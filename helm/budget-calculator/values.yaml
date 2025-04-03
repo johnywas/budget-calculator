@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository:  docker.io/yiannistse013/budget-calculator
-  tag: v0.0.2
+  tag: v1.0.0
   pullPolicy: IfNotPresent
 
 service:
