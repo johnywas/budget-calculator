@@ -47,13 +47,16 @@ def index():
                         flash(f'File {filename} does not have enough columns')
                         continue
                     
-                    # Sum the 4th column (0-indexed)
-                    column_sum = df.iloc[:, 3].sum()
-                    total_sum += column_sum
+                    # Group by 'concept' and sum the 4th column (0-indexed)
+                    grouped = df.groupby('concept').agg({'money': 'sum'}).reset_index()
+                    grouped = grouped.sort_values(by='money', ascending=False)  # Sort by money
+                    
+                    total_sum = grouped['money'].sum()  # Total costs
                     
                     processed_files.append({
                         'name': filename,
-                        'sum': column_sum
+                        'grouped_data': grouped.to_dict(orient='records'),  # Convert to dict for rendering
+                        'total_sum': total_sum
                     })
                     
                 except Exception as e:

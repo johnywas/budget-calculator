@@ -1,38 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Cost Calculation Results</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>Cost Report</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Cost Calculation Results</h1>
-        
-        <div class="result-summary">
-            <h2>Total Monthly Costs: {{ "%.2f"|format(total_sum) }}</h2>
-        </div>
-        
-        <div class="results">
-            <h3>Breakdown by File:</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>File</th>
-                        <th>Cost</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for file in files %}
-                    <tr>
-                        <td>{{ file.name }}</td>
-                        <td>{{ "%.2f"|format(file.sum) }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        
-        <a href="/" class="button">Calculate Another</a>
-    </div>
+    <h1>Cost Report</h1>
+    <p>Total Sum: {{ total_sum }}</p>
+    {% for file in files %}
+        <h2>File: {{ file.name }}</h2>
+        <table>
+            <tr>
+                <th>Concept</th>
+                <th>Total Cost</th>
+            </tr>
+            {% for entry in file.grouped_data %}
+            <tr>
+                <td>{{ entry.concept }}</td>
+                <td>{{ entry.money }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endfor %}
+    <a href="{{ url_for('index') }}">Upload another file</a>
 </body>
 </html> 
