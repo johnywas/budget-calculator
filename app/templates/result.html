@@ -1,3 +1,4 @@
+<!-- result.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,17 +12,17 @@
         <h2>File: {{ file.name }}</h2>
         <table>
             <tr>
-                <th>Concept</th>
-                <th>Total Cost</th>
+                <th>Establecimiento/Concepto</th>
+                <th>Total Importe</th>
             </tr>
             {% for entry in file.grouped_data %}
             <tr>
-                <td>{{ entry.concept }}</td>
-                <td>{{ entry.money }}</td>
+                <td>{{ entry['Establecimiento/concepto'] }}</td>
+                <td>{{ entry['Importe'] }}</td>
             </tr>
             {% endfor %}
         </table>
     {% endfor %}
     <a href="{{ url_for('index') }}">Upload another file</a>
 </body>
-</html> 
+</html>

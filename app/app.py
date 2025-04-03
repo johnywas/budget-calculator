@@ -47,11 +47,11 @@ def index():
                         flash(f'File {filename} does not have enough columns')
                         continue
                     
-                    # Group by 'concept' and sum the 4th column (0-indexed)
-                    grouped = df.groupby('concept').agg({'money': 'sum'}).reset_index()
-                    grouped = grouped.sort_values(by='money', ascending=False)  # Sort by money
+                    # Group by 'Establecimiento/concepto' and sum the 'Importe' column
+                    grouped = df.groupby('Establecimiento/concepto').agg({'Importe': 'sum'}).reset_index()
+                    grouped = grouped.sort_values(by='Importe', ascending=False)  # Sort by total cost
                     
-                    total_sum = grouped['money'].sum()  # Total costs
+                    total_sum = grouped['Importe'].sum()  # Total costs
                     
                     processed_files.append({
                         'name': filename,
